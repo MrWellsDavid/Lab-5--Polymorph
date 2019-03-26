@@ -22,19 +22,115 @@ int menu()
 
 void addFaculty(Faculty* fPTR, int size, int &track)
 {
-	string first, last, rank; 
+	Faculty test;//made so that the setDepartment() funcion can be called
+	string first, last, id, department, rank, office;
+	double salary;
+	char option;//for the yes or no to commit the data
+	int exit = -1;
+	
 	if (track >= size)
 		cout <<"Maxed out!\n";
 	else
 	{
-	
 		for (int i = 0; i < track; i++)
 			fPTR++;
-		cout <<"Enter full name and rank: ";
-		cin >>first>>last>>rank;
-		fPTR -> setName(first, last);
-		fPTR -> setRank(rank);
-		track++;
+		cout <<"Enter full name: ";
+		cin >>first>>last;
+		cout <<"Enter the id: ";
+		cin >> id;
+		cout <<"Enter the rank: ";
+		cin >> rank;
+		cout << "Enter the office: ";
+		cin >> office;
+		cout << "Enter the salary: $";
+		cin >> salary;
+		department = test.setDepartment();
+		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tOffice: " 
+			 << office << "\n\t\tRank: " << rank << "\n\t\tDepartment: " << department << "\n\t\tSalaray $" << salary;
+		cout << "\nWould you like to commit this data (y / n): ";
+		cin >> option;
+		do
+		{
+			if (option == 'y')
+			{
+				fPTR->setName(first, last);
+				fPTR->setID(id);
+				fPTR->setOffice(office);
+				fPTR->setRank(rank);
+				fPTR->setSalary(salary);
+				fPTR->setDepartment(department);
+				cout << "Data committed\n" << endl;
+				track++;
+				exit = 0;
+			}
+			else if (option == 'n')
+			{
+				cout << "Data not committed\n" << endl;
+				exit = 0;
+			}
+			else
+			{
+				cout << "Error: Invalid option, re-enter: ";
+				cin >> option;
+			}
+		}while (exit != 0);
+	}
+}
+void addStudent(Student* sPTR, int size, int &track)
+{
+	Student test;//made so that the setDepartment() funcion can be called
+	string first, last, id, department, standing;
+	double gpa;
+	int credits;
+	char option;//for the yes or no to commit the data
+	int exit = -1;
+	
+	if (track >= size)
+		cout <<"Maxed out!\n";
+	else
+	{
+		for (int i = 0; i < track; i++)
+			sPTR++;
+		cout <<"Enter full name: ";
+		cin >>first>>last;
+		cout <<"Enter the id: ";
+		cin >> id;
+		cout <<"Enter the standing: ";
+		cin >> standing;
+		cout << "Enter the credits: ";
+		cin >> credits;
+		cout << "Enter the gpa";
+		cin >> gpa;
+		department = test.setDepartment();
+		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tCredits: " 
+			 << credits << "\n\t\tGPA: " << gpa << "\n\t\tDepartment: " << department;
+		cout << "\nWould you like to commit this data (y / n): ";
+		cin >> option;
+		do
+		{
+			if (option == 'y')
+			{
+				sPTR->setName(first, last);
+				sPTR->setID(id);
+				sPTR->setCredits(credits);
+				sPTR->setGPA(gpa);
+				sPTR->setStanding(standing);
+				sPTR->setDepartment(department);
+				cout << "Data committed\n" << endl;
+				track++;
+				exit = 0;
+			}
+			else if (option == 'n')
+			{
+				cout << "Data not committed\n" << endl;
+				exit = 0;
+			}
+			else
+			{
+				cout << "Error: Invalid option, re-enter: ";
+				cin >> option;
+			}
+		}while (exit != 0);
 	}
 }
 void viewFaculty(Faculty* fPTR, int max)
@@ -43,6 +139,14 @@ void viewFaculty(Faculty* fPTR, int max)
 	{
 		fPTR -> print();
 		fPTR++;
+	}
+}
+void viewStudent(Student* sPTR, int max)
+{
+	for (int i = 0; i < max; i++)
+	{
+		sPTR->print();
+		sPTR++;
 	}
 }
 
@@ -62,13 +166,12 @@ int main(int argc, char** argv) {
 		switch(option)
 		{
 			case 1:addFaculty(myFac, 100, facCount);
-					
 				break;
-			case 2:
+			case 2:addStudent(myStu, 100, stuCount);
 				break;
 			case 3:viewFaculty(myFac, facCount);
 				break;
-			case 4:
+			case 4:viewStudent(myStu, stuCount);
 				break;
 			case 5:
 				break;

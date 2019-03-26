@@ -18,6 +18,10 @@ void Faculty::setOffice(string o){ office = o;
 
 void Faculty::print(){
 	cout <<"Faculty Information\n"
-		<<"Full Name: "<<first<<" "<<last<<"\n"
-		<<"Rank: "<<rank<<endl;
+		<<"\tFull Name: "<<first<<" "<<last<<"\n"
+		<<"\tID: "<<id<<"\n"
+		<<"\tDepartment: "<<department<<"\n"
+		<<"\tRank: "<<rank<<"\n"
+		<<"\tSalary: $"<<salary<<"\n"
+		<<"\tOffice: "<<office<<endl;
 }

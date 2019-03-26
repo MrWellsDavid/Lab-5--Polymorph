@@ -8,7 +8,8 @@ class Employee{
 		Employee();
 		void setName(string, string);
 		void setID(string);
-		void setDepartment();
+		string setDepartment();
+		void setDepartment(string);
 		string getName();
 		string getID();
 		string getDepartment();

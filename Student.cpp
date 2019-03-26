@@ -16,8 +16,10 @@ void Student::setGPA(double g){gpa = g;
 
 void Student::print(){
 	cout <<"Student Information\n"
-		<<"Student Name: "<<first<<" "<<last<<"\n"
-		<<"Standing: "<<standing<<"\n"
-		<<"Number of credits: "<<credits<<"\n"
-		<<"GPA = "<<gpa<<endl;
+		<<"\tStudent Name: "<<first<<" "<<last<<"\n"
+		<<"\tID: "<<id<<"\n"
+		<<"\tDepartment: "<<department<<"\n"
+		<<"\tStanding: "<<standing<<"\n"
+		<<"\tNumber of credits: "<<credits<<"\n"
+		<<"\tGPA = "<<gpa<<endl;
 }

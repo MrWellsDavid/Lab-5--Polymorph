@@ -16,7 +16,7 @@ void Employee::setID(string i)
 {
 	id = "CTU" + i;
 }
-void Employee::setDepartment()
+string Employee::setDepartment()
 {
 	string departments[] = {"CS", "EE", "EET", "CET", "Cyber"};
 	int option;
@@ -31,9 +31,13 @@ void Employee::setDepartment()
 		
 	} while (option < 0 || option > 4);
 	
-	department = departments[option];	
+	department = departments[option];
+	return department;	
 }
-
+void Employee::setDepartment(string d)
+{
+	department = d;
+}
 //accessors
 string Employee::getName() { return first + " " + last;}
 string Employee::getID(){return id;}
