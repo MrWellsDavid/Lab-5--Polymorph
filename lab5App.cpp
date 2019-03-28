@@ -113,7 +113,7 @@ void addStudent(Student* sPTR, int size, int &track, Employee** ePTR, int empSiz
 		cin >> standing;
 		cout << "Enter the credits: ";
 		cin >> credits;
-		cout << "Enter the gpa";
+		cout << "Enter the gpa: ";
 		cin >> gpa;
 		department = test.setDepartment();
 		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tCredits: "
