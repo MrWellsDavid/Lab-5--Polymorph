@@ -168,11 +168,13 @@ void viewStudent(Student* sPTR, int max)
 // Jack's been having some trouble with this.
 // Here's some references Jack's been playing around with:
 // https://stackoverflow.com/questions/9144401/c-dereferencing-pointers-that-are-elements-of-an-array
+// The syntax described here (https://stackoverflow.com/questions/28641955/void-value-not-ignored-as-it-ought-to-be)...
+// works if there's just one item in the Employee array, but if there's more than one, it seems to crash the program.
 void viewAll(Employee** ePTR, int empMax){
 	for (int i = 0; i < empMax; i++)
 	{
-		*ePTR[i] -> print();
-		ePTR++;
+		(*ePTR) -> print();
+		ePTR++; // Since it crashes if there's more than one, I suspect we can't just increment the pointers like this
 	}
 }
 int main(int argc, char** argv) {
