@@ -25,13 +25,13 @@ string Employee::setDepartment()
 		cout <<"Departments\n"
 			 <<"==========="<<endl;
 		for (int i = 0; i < 5; i++)
-			cout <<i<<". "<<departments[i]<<endl;
+			cout <<(i+1)<<". "<<departments[i]<<endl;
 		cout <<"Enter the value for the department: ";
 		cin >>option;
 		
-	} while (option < 0 || option > 4);
+	} while (option < 1 || option > 5);
 	
-	department = departments[option];
+	department = departments[option - 1];
 	return department;	
 }
 void Employee::setDepartment(string d)

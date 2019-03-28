@@ -149,7 +149,6 @@ void viewStudent(Student* sPTR, int max)
 		sPTR++;
 	}
 }
-
 int main(int argc, char** argv) {
 
 	Faculty myFac[100];
