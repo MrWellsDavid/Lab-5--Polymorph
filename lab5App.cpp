@@ -16,24 +16,30 @@ int menu()
 		 <<"\t\t5. View All\n"
 		 <<"\t\t6. EXIT\n"
 		 <<"\tEnter your choice: ";
-	cin >>choice;	
+	cin >>choice;
 	return choice;
 }
 
-void addFaculty(Faculty* fPTR, int size, int &track)
+void addFaculty(Faculty* fPTR, int size, int &track, Employee** ePTR, int empSize, int &empTrack)
 {
 	Faculty test;//made so that the setDepartment() funcion can be called
 	string first, last, id, department, rank, office;
 	double salary;
 	char option;//for the yes or no to commit the data
 	int exit = -1;
-	
+
 	if (track >= size)
-		cout <<"Maxed out!\n";
+		cout <<"Faculty maxed out!\n";
+	else if (empTrack >= empSize)
+		cout <<"Employees maxed out!\n";
 	else
 	{
-		for (int i = 0; i < track; i++)
+		for (int i = 0; i < track; i++){
 			fPTR++;
+		}
+		for (int i = 0; i < empTrack; i++){
+			ePTR++;
+		}
 		cout <<"Enter full name: ";
 		cin >>first>>last;
 		cout <<"Enter the id: ";
@@ -45,7 +51,7 @@ void addFaculty(Faculty* fPTR, int size, int &track)
 		cout << "Enter the salary: $";
 		cin >> salary;
 		department = test.setDepartment();
-		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tOffice: " 
+		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tOffice: "
 			 << office << "\n\t\tRank: " << rank << "\n\t\tDepartment: " << department << "\n\t\tSalaray $" << salary;
 		cout << "\nWould you like to commit this data (y / n): ";
 		cin >> option;
@@ -61,6 +67,8 @@ void addFaculty(Faculty* fPTR, int size, int &track)
 				fPTR->setDepartment(department);
 				cout << "Data committed\n" << endl;
 				track++;
+				ePTR[empTrack] = fPTR;
+				empTrack++;
 				exit = 0;
 			}
 			else if (option == 'n')
@@ -76,7 +84,7 @@ void addFaculty(Faculty* fPTR, int size, int &track)
 		}while (exit != 0);
 	}
 }
-void addStudent(Student* sPTR, int size, int &track)
+void addStudent(Student* sPTR, int size, int &track, Employee** ePTR, int empSize, int &empTrack)
 {
 	Student test;//made so that the setDepartment() funcion can be called
 	string first, last, id, department, standing;
@@ -84,13 +92,19 @@ void addStudent(Student* sPTR, int size, int &track)
 	int credits;
 	char option;//for the yes or no to commit the data
 	int exit = -1;
-	
+
 	if (track >= size)
-		cout <<"Maxed out!\n";
+		cout <<"Students maxed out!\n";
+	else if (empTrack >= empSize)
+		cout <<"Employees maxed out!\n";
 	else
 	{
-		for (int i = 0; i < track; i++)
+		for (int i = 0; i < track; i++){
 			sPTR++;
+		}
+		for (int i = 0; i < empTrack; i++){
+			ePTR++;
+		}
 		cout <<"Enter full name: ";
 		cin >>first>>last;
 		cout <<"Enter the id: ";
@@ -102,7 +116,7 @@ void addStudent(Student* sPTR, int size, int &track)
 		cout << "Enter the gpa";
 		cin >> gpa;
 		department = test.setDepartment();
-		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tCredits: " 
+		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tCredits: "
 			 << credits << "\n\t\tGPA: " << gpa << "\n\t\tDepartment: " << department;
 		cout << "\nWould you like to commit this data (y / n): ";
 		cin >> option;
@@ -118,6 +132,8 @@ void addStudent(Student* sPTR, int size, int &track)
 				sPTR->setDepartment(department);
 				cout << "Data committed\n" << endl;
 				track++;
+				ePTR[empTrack] = sPTR;
+				empTrack++;
 				exit = 0;
 			}
 			else if (option == 'n')
@@ -149,6 +165,16 @@ void viewStudent(Student* sPTR, int max)
 		sPTR++;
 	}
 }
+// Jack's been having some trouble with this.
+// Here's some references Jack's been playing around with:
+// https://stackoverflow.com/questions/9144401/c-dereferencing-pointers-that-are-elements-of-an-array
+void viewAll(Employee** ePTR, int empMax){
+	for (int i = 0; i < empMax; i++)
+	{
+		*ePTR[i] -> print();
+		ePTR++;
+	}
+}
 int main(int argc, char** argv) {
 
 	Faculty myFac[100];
@@ -164,15 +190,15 @@ int main(int argc, char** argv) {
 		option = menu();
 		switch(option)
 		{
-			case 1:addFaculty(myFac, 100, facCount);
+			case 1:addFaculty(myFac, 100, facCount, myEmp, 200, empCount);
 				break;
-			case 2:addStudent(myStu, 100, stuCount);
+			case 2:addStudent(myStu, 100, stuCount, myEmp, 200, empCount);
 				break;
 			case 3:viewFaculty(myFac, facCount);
 				break;
 			case 4:viewStudent(myStu, stuCount);
 				break;
-			case 5:
+			case 5:viewAll(myEmp, empCount);
 				break;
 			case 6: cout<<"Goodbye!\n";
 				break;
@@ -180,7 +206,7 @@ int main(int argc, char** argv) {
 		}
 		system("PAUSE");
 	}while (option != 6);
-	
-	
+
+
 	return 0;
 }
