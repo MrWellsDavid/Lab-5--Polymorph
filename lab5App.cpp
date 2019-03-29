@@ -148,23 +148,23 @@ void viewFaculty(Faculty* fPTR, int max)
 	for (int i = 0; i < max; i++)
 	{
 		fPTR -> print();
-		fPTR++;
-	}
+		
+	}fPTR++;// no longer crashes because instead of continuiously going on it only goes to the next one when it comes out the loop
 }
 void viewStudent(Student* sPTR, int max)
 {
 	for (int i = 0; i < max; i++)
 	{
 		sPTR->print();
-		sPTR++;
-	}
+		
+	}sPTR++;// no longer crashes because instead of continuiously going on it only goes to the next one when it comes out the loop
 }
 void viewAll(Employee** ePTR, int empMax){
 	for (int i = 0; i < empMax; i++)
 	{
 		(*ePTR) -> print();
-		ePTR++;
-	}
+		
+	}ePTR++;// no longer crashes because instead of continuiously going on it only goes to the next one when it comes out the loop
 }
 int main(int argc, char** argv) {
 
