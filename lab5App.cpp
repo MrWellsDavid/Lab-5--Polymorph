@@ -49,7 +49,7 @@ void addFaculty(Faculty* fPTR, int size, int &track, Employee** ePTR, int empSiz
 		cin >> salary;
 		department = test.setDepartment();
 		cout << "\nData Entered:\n\t" << first << " " << last << "\n\t\tID: " << id << "\n\t\tOffice: "
-			 << office << "\n\t\tRank: " << rank << "\n\t\tDepartment: " << department << "\n\t\tSalary $" << salary;
+			 << office << "\n\t\tRank: " << rank << "\n\t\tDepartment: " << department << "\n\t\tSalaray $" << salary;
 		cout << "\nWould you like to commit this data (y / n): ";
 		cin >> option;
 		do
@@ -148,23 +148,23 @@ void viewFaculty(Faculty* fPTR, int max)
 	for (int i = 0; i < max; i++)
 	{
 		fPTR -> print();
-		
-	}fPTR++;// no longer crashes because instead of continuiously going on it only goes to the next one when it comes out the loop
+		fPTR++;
+	}
 }
 void viewStudent(Student* sPTR, int max)
 {
 	for (int i = 0; i < max; i++)
 	{
 		sPTR->print();
-		
-	}sPTR++;// no longer crashes because instead of continuiously going on it only goes to the next one when it comes out the loop
+		sPTR++;
+	}
 }
 void viewAll(Employee** ePTR, int empMax){
 	for (int i = 0; i < empMax; i++)
 	{
 		(*ePTR) -> print();
-		
-	}ePTR++;// no longer crashes because instead of continuiously going on it only goes to the next one when it comes out the loop
+		ePTR++;
+	}
 }
 int main(int argc, char** argv) {
 
